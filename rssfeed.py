@@ -20,14 +20,19 @@ import ssl
 
 
 feeds = {
-        "bbc" : "https://www.bbc.com/news/10628494",
-        "craigslist" : "https://www.craigslist.org/about/rss",
-        "espn" : "https://www.espn.com/espn/news/story?page=rssinfo",
-        "fox news" : "https://www.foxnews.com/about/rss/",
-        "NYT": "https://archive.nytimes.com/www.nytimes.com/services/xml/rss/index.html?mcubz=0",
-        "reddit" : "https://www.reddit.com/wiki/rss",
-        "Wall Street Journal" : "https://www.wsj.com/news/rss-news-and-feeds",
-        "Washington Post" : "https://www.washingtonpost.com/discussions/2018/10/12/washington-post-rss-feeds/?noredirect=on"
+        "bbc1"       : "http://feeds.bbci.co.uk/news/rss.xml",
+        "bbc2"       : "http://feeds.bbci.co.uk/news/world/rss.xml",
+        "bbc3"       : "http://feeds.bbci.co.uk/news/education/rss.xml",
+        "craigslist" : "https://www.craigslist.org/about/best/all/index.rss",
+        "Joe Rogan"  : "http://podcasts.joerogan.net/feed",
+        "espn1"      : "https://www.espn.com/espn/rss/news",
+        "espn2"      : "https://www.espn.com/espn/rss/nfl/news",
+        "espn3"      : "https://www.espn.com/espn/rss/espnu/news",
+        "reddit1"    : "https://www.reddit.com/.rss",
+        "reddit2"    : "https://www.reddit.com/r/news/.rss",
+        "WSJ"        : "https://feeds.a.dj.com/rss/RSSWorldNews.xml",
+        "WaPo1"      : "http://feeds.washingtonpost.com/rss/rss_fact-checker",
+        "Wapo2"      : "http://feeds.washingtonpost.com/rss/rss_innovations"
          }
 
 
@@ -38,19 +43,19 @@ if hasattr(ssl, '_create_unverified_context'):
     ssl._create_default_https_context = ssl._create_unverified_context
 
 
-
-
-url = "https://www.craigslist.org/about/best/all/index.rss"
-
-d = feedparser.parse(url)
-
-for e in range(0, len(d.entries)):
-    
-    print( str(e) + " : " + d.entries[e].title )
-    
-    print( d.entries[e].updated )
+#this 
+for company, url in feeds.items():
+    d = feedparser.parse(url)
+    print(company.upper() )
+    print(len(d.entries))
+    for entry in range(0, len(d.entries)):
+        print( str(entry) + " : " +d.entries[entry].title)
+        print( d.entries[entry].updated )
+        print()
     print()
     print()
+
+
 
 
 
